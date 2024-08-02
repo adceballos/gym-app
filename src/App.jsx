@@ -5,9 +5,9 @@ import Generator from './components/Generator'
 import Workout from './components/Workout'
 
 function App() {
+
   return (
-    // "<>" opening and "</>" closing are react fragments, which is essentially just an empty div. We swapped it out for a "main" section.
-    <main>
+    <main className='min-h-screen flex flex-col bg-gradient-to-r from-slate-800 to-slate-950 text-white text-sm sm:text-base'>
      <Hero />
      <Generator />
      <Workout />
