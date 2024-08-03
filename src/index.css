@@ -6,3 +6,19 @@
 * {
     font-family: "Poppins", sans-serif;
 }
+
+/* span element inherits from its parent. In Hero.jsx, span will inherit from either the p element or h1 element */
+span {
+    font-family: inherit;
+    font-weight: inherit;
+}
+
+/* .blueShadow is a custom classes that gives a shadow to the button located within Hero.jsx, and uses :hover to create a pop out effect */
+.blueShadow {
+    box-shadow: 3px 3px 0 0 #60a5fa;
+}
+
+.blueShadow:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 6px 6px 0 0 #60a5fa;
+}
