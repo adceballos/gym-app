@@ -1,5 +1,6 @@
 import React from 'react'
 import SectionWrapper from './SectionWrapper'
+import { SCHEMES, WORKOUTS } from '../utils/swoldier'
 
 // Header component
 function Header(props) {
@@ -21,7 +22,26 @@ export default function Generator() {
     <SectionWrapper header={"generate your workout"} title={['Time', 'to', 'flex', 'those', 'Claws']}>
         {/* In JSX, you can use a self-closing tag if a component does not have any children. <Header /> acts the same as <Header></Header>. */}
         <Header index={'01'} title={'Choose your challenge'} description={"selection the workout you wish to endure."} />
-        
+        {/* Retrieve an array of keys from WORKOUTS object located in swoldier.js, then map each key as a button, representing 4 different workout splits.
+            In the arrow function, type represents the current key, and type index represents the index of that key in the array. */}
+        <div className='grid grid-cols-2 sm:grid-cols-4 gap-4'>
+          {Object.keys(WORKOUTS).map((type, typeIndex) => {
+            return (
+              <button className='bg-slate-950 border border-blue-400 py-3 rounded-lg hover:border-blue-600' key={typeIndex}>
+                {/* Use .replaceAll within curly braces because its a JS function to remove all underscores. */}
+                <p className='capitalize'>{type.replaceAll('_', " ")}</p>
+              </button>
+            )
+          })}
+        </div>
+        <Header index={'02'} title={'Lock on Targets'} description={"selection the muscles judged for annihilation."} />
+        <div className='bg-slate-950 p-3 border border-solid border-blue-400 rounded-lg'>
+          <div className='relative flex items-center justify-center'>
+            <p>Select muscle groups</p>
+            {/* Carrot down icon imported from fontawesome */}
+            <i className="fa-solid fa-caret-down absolute right-3 top-1/2 -translate-y-1/2"></i>
+          </div>
+        </div>
     </SectionWrapper>
   )
 }
