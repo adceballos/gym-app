@@ -32,7 +32,7 @@ export default function Generator() {
     // Pass header and title as attribute style props to SectionWrapper component.
     <SectionWrapper header={"generate your workout"} title={['Time', 'to', 'flex', 'those', 'Claws']}>
         {/* In JSX, you can use a self-closing tag if a component does not have any children. <Header /> acts the same as <Header></Header>. */}
-        <Header index={'01'} title={'Pick your poison'} description={"selection the workout you wish to endure."} />
+        <Header index={'01'} title={'Pick your poison'} description={"Select the workout you wish to endure."} />
         {/* Retrieve an array of keys from WORKOUTS object located in swoldier.js, then map each key as a button, representing 4 different workout splits.
             In the arrow function, type represents the current key, and type index represents the index of that key in the array. */}
         <div className='grid grid-cols-2 sm:grid-cols-4 gap-4'>
@@ -45,17 +45,28 @@ export default function Generator() {
             )
           })}
         </div>
-        <Header index={'02'} title={'Lock on Targets'} description={"selection the muscles judged for annihilation."} />
+        <Header index={'02'} title={'Lock on targets'} description={"Select the muscles judged for annihilation."} />
         <div className='bg-slate-950 border border-solid border-blue-400 rounded-lg flex flex-col'>
           <button onClick={toggleModal} className='relative flex items-center justify-center p-3'>
             <p>Select muscle groups</p>
             {/* Carrot down icon imported from fontawesome, then moved it to the right of our box. */}
             <i className="fa-solid fa-caret-down absolute right-3 top-1/2 -translate-y-1/2"></i>
           </button>
-          { /* Conditional rendering section. Use short circuit operator if show model == true */ }
+          { /* Use short circuit operator (&&) to conditionally render the modal. if showModal == true, the <div>modal</div> will be rendered. */ }
           {showModal && (
             <div>modal</div>
           )}
+        </div>
+        <Header index={'03'} title={'Conquer the deep'} description={"Select your ultimate objective."} />
+        <div className='grid grid-cols-3 gap-4'>
+          {Object.keys(SCHEMES).map((scheme, schemeIndex) => {
+            return (
+              <button className='bg-slate-950 border border-blue-400 py-3 rounded-lg hover:border-blue-600' key={schemeIndex}>
+                {/* Use .replaceAll within curly braces because its a JS function to remove all underscores. */}
+                <p className='capitalize'>{scheme.replaceAll('_', " ")}</p>
+              </button>
+            )
+          })}
         </div>
     </SectionWrapper>
   )
