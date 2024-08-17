@@ -36,7 +36,7 @@ export default function Generator() {
       return
     }
     
-    // Allow the user to only select 3 muscles.
+    // Limit muscle group selection to 3.
     if (muscles.length > 2) {
       return
     }
@@ -44,7 +44,7 @@ export default function Generator() {
     // If the user selects a different split, update the muscles state to be a new array that contains only the selected muscleGroup.
     if (poison !== 'individual') {
       setMuscles([muscleGroup])
-      // close dropdown menu
+      // close modal after one selection
       setShowModal(false)
       return
     }
@@ -52,7 +52,7 @@ export default function Generator() {
     // spread operator (...) is used to create a new array that includes all the elements of the existing muscles array, followed by the newly selected muscleGroup.
     setMuscles([...muscles, muscleGroup])
 
-    // If 3 muscles have been selected, close the dropdown menu.
+    // If 3 muscles have been selected, close the modal.
     if (muscles.length === 2) {
       setShowModal(false)
     }
@@ -69,7 +69,7 @@ export default function Generator() {
             return (
               // When the button is clicked, the anonymous arrow function is called, and the state variable 'poison' is updated to the value of 'type', which is just whatever the user selects.
               <button onClick={() => {
-                // Reset muscles array so that when selecting a new split (poison), muscle groups in section 2 must also be reselected.
+                // Reset muscles array so that when selecting a new split (poison), muscle group selection is reset.
                 setMuscles([])
                 setPoison(type)
               {/* */}
@@ -90,7 +90,7 @@ export default function Generator() {
             {/* Carrot down icon imported from fontawesome, then moved it to the right of our box. */}
             <i className="fa-solid fa-caret-down absolute right-3 top-1/2 -translate-y-1/2"></i>
           </button>
-          { /* Use short circuit operator (&&) to conditionally render the modal. if showModal == true, the <div>modal</div> will be rendered. */ }
+          {/* Use short circuit operator (&&) to conditionally render the <div>...</div>. If showModal is true (dropdown button is clicked), everything after && is rendered (the dropdown displays all of the muscleGroup buttons). */}
           {showModal && (
             <div className='flex flex-col p-3'>
               {/* Access array of individual muscle groups if individual split is selected, otherwise access array through key. */}
@@ -105,7 +105,7 @@ export default function Generator() {
             </div>
           )}
         </div>
-        
+
         <Header index={'03'} title={'Conquer the deep'} description={"Select your ultimate objective."} />
         <div className='grid grid-cols-3 gap-4'>
           {Object.keys(SCHEMES).map((scheme, schemeIndex) => {
