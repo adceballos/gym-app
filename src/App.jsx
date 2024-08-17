@@ -18,6 +18,7 @@ function App() {
     if (muscles.length < 1) {
       return
     }
+    // Generate a new workout based on the selected split (poison), muscle groups, and goal, then update the state with the generated workout.
     let newWorkout = generateWorkout(poison, muscles, goal)
     setWorkout(newWorkout)
   }
