@@ -3,14 +3,39 @@ import { useState } from 'react'
 import Hero from './components/Hero'
 import Generator from './components/Generator'
 import Workout from './components/Workout'
+// import exported generateWorkout function
+import { generateWorkout } from './utils/functions'
 
 function App() {
+  // States can be passed down, but cannot be passed up. We initialize our states here so we can have access to these values in our top level component (App.jsx) because we need them to generate our workout.
+  const [workout, setWorkout] = useState(null)
+  const [poison, setPoison] = useState('individual')
+  const [muscles, setMuscles] = useState([])
+  const [goal, setGoal] = useState('strength_power')
+
+  function updateWorkout() {
+    // do nothing if no muscles are selected
+    if (muscles.length < 1) {
+      return
+    }
+    let newWorkout = generateWorkout(poison, muscles, goal)
+    setWorkout(newWorkout)
+  }
 
   return (
     <main className='min-h-screen flex flex-col bg-gradient-to-r from-slate-800 to-slate-950 text-white text-sm sm:text-base'>
      <Hero />
-     <Generator />
-     <Workout />
+     <Generator 
+     poison={poison}
+     setPoison={setPoison}
+     muscles={muscles}
+     setMuscles={setMuscles}
+     goal={goal}
+     setGoal={setGoal}
+     updateWorkout={updateWorkout}
+     />
+     {/* Conditionally render workout, so it is rendered only if a workout exists. */}
+     {workout && (<Workout workout={workout} />)}
     </main>
   )
 }

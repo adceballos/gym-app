@@ -17,12 +17,12 @@ function Header(props) {
   )
 }
 
-export default function Generator() {
+// destructure out state values
+export default function Generator(props) {
+  // destructure values from App.jsx
+  const { muscles, setMuscles, poison, setPoison, goal, setGoal, updateWorkout } = props
   // We import {useState} to use a React stateful variable instead of a traditional variable. First value is the current state, and second value is the function that is used to update our state. useState is the hook that is declared with a default value.
   const [showModal, setShowModal] = useState(false)
-  const [poison, setPoison] = useState('individual')
-  const [muscles, setMuscles] = useState([])
-  const [goal, setGoal] = useState('strength_power')
 
   function toggleModal() {
     setShowModal(!showModal)
