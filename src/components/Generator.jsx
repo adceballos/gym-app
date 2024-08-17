@@ -108,7 +108,7 @@ export default function Generator(props) {
         </div>
 
         <Header index={'03'} title={'Conquer the deep'} description={"Select your ultimate objective."} />
-        <div className='grid grid-cols-3 gap-4'>
+        <div className='grid grid-cols-1 sm:grid-cols-3 gap-4'>
           {Object.keys(SCHEMES).map((scheme, schemeIndex) => {
             return (
               <button onClick={() => {
@@ -119,7 +119,8 @@ export default function Generator(props) {
             )
           })}
         </div>
-        <Button text={"formulate"}></Button>
+        {/* updateWorkout function is passed as reference and then called when the formulate button is clicked. If we used (), we'd be calling the function when the page is painted. Instead, we're telling React it should be called later when something happens (button is clicked). The updateWorkout function then calls generateWorkout() in App.jsx. */}
+        <Button func={updateWorkout} text={"formulate"}></Button>
     </SectionWrapper>
   )
 }
