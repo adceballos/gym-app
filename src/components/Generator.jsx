@@ -25,22 +25,54 @@ export default function Generator() {
 
   function toggleModal() {
     setShowModal(!showModal)
-    //showModal = !showModal
+  }
+
+  // function to select and deselect muscle groups. Does so by adding or removing selected muscle groups from the muscles array.
+  function updateMuscles(muscleGroup) {
+    if (muscles.includes(muscleGroup)) {
+      // functionality to select and deselect muscle groups.
+      // .filter() creates a new array that excludes the clicked muscleGroup by iterating over each muscleGroup in the muscles array and keeping the ones that are not equal to the clicked muscle.
+      setMuscles(muscles.filter(val => val !== muscleGroup))
+      return
+    }
+    
+    // Allow the user to only select 3 muscles.
+    if (muscles.length > 2) {
+      return
     }
 
+    // If the user selects a different split, update the muscles state to be a new array that contains only the selected muscleGroup.
+    if (poison !== 'individual') {
+      setMuscles([muscleGroup])
+      // close dropdown menu
+      setShowModal(false)
+      return
+    }
+
+    // spread operator (...) is used to create a new array that includes all the elements of the existing muscles array, followed by the newly selected muscleGroup.
+    setMuscles([...muscles, muscleGroup])
+
+    // If 3 muscles have been selected, close the dropdown menu.
+    if (muscles.length === 2) {
+      setShowModal(false)
+    }
+  }
   return (
     // Pass header and title as attribute style props to SectionWrapper component.
     <SectionWrapper header={"generate your workout"} title={['Time', 'to', 'flex', 'those', 'Claws']}>
         {/* In JSX, you can use a self-closing tag if a component does not have any children. <Header /> acts the same as <Header></Header>. */}
         <Header index={'01'} title={'Pick your poison'} description={"Select the workout you wish to endure."} />
         {/* Retrieve an array of keys from WORKOUTS object located in swoldier.js, then map each key as a button, representing 4 different workout splits.
-            In the arrow function, type represents the current key, and type index represents the index of that key in the array. */}
+            In the arrow function, type represents the current key, and typeIndex represents the index of that key in the array. */}
         <div className='grid grid-cols-2 sm:grid-cols-4 gap-4'>
           {Object.keys(WORKOUTS).map((type, typeIndex) => {
             return (
               // When the button is clicked, the anonymous arrow function is called, and the state variable 'poison' is updated to the value of 'type', which is just whatever the user selects.
               <button onClick={() => {
+                // Reset muscles array so that when selecting a new split (poison), muscle groups in section 2 must also be reselected.
+                setMuscles([])
                 setPoison(type)
+              {/* */}
               }} className={' bg-slate-950 border duration-200 hover:border-blue-600 py-3 rounded-lg ' + (type === poison ? 'border-blue-600' : 'border-blue-400')} key={typeIndex}>
                 {/* Use .replaceAll within curly braces because its a JS function to remove all underscores. */}
                 <p className='capitalize'>{type.replaceAll('_', " ")}</p>
@@ -48,26 +80,39 @@ export default function Generator() {
             )
           })}
         </div>
+
         <Header index={'02'} title={'Lock on targets'} description={"Select the muscles judged for annihilation."} />
         <div className='bg-slate-950 border border-solid border-blue-400 rounded-lg flex flex-col'>
           {/* within onClick, we directly assign the toggleModal function instead of calling it through toggleModal(). We do this because the function would be called when the web page is painted, thus breaking our application. */}
           <button onClick={toggleModal} className='relative flex items-center justify-center p-3'>
-            <p>Select muscle groups</p>
+            {/* muscles.length indicates size of array/muscles selected. If no muscles have been selected, prompt the user to select them, otherwise join the selected muscle array elements into a space separated string and display it on the dropdown bar. */}
+            <p className='capitalize'>{muscles.length === 0 ? 'Select muscle groups' : muscles.join(' ')}</p>
             {/* Carrot down icon imported from fontawesome, then moved it to the right of our box. */}
             <i className="fa-solid fa-caret-down absolute right-3 top-1/2 -translate-y-1/2"></i>
           </button>
           { /* Use short circuit operator (&&) to conditionally render the modal. if showModal == true, the <div>modal</div> will be rendered. */ }
           {showModal && (
-            <div>modal</div>
+            <div className='flex flex-col p-3'>
+              {/* Access array of individual muscle groups if individual split is selected, otherwise access array through key. */}
+              {(poison === 'individual' ? WORKOUTS[poison] : Object.keys(WORKOUTS[poison])).map((muscleGroup, muscleGroupIndex) => {
+                return (
+                  // When button is clicked, anonymous arrow function calls updateMuscles function and passes the currently selected muscle group. Use .includes() to check if the current muscleGroup is included in the muscles state array (i.e., whether the muscle group has been selected), and highlight the text color blue.
+                  <button onClick={() => {updateMuscles(muscleGroup)}} key={muscleGroupIndex} className={'hover:text-blue-400 duration-200 ' + (muscles.includes(muscleGroup) ? 'text-blue-400' : '')}>
+                    <p className='uppercase'>{muscleGroup.replaceAll('_', " ")}</p>
+                  </button>
+                )
+              })}
+            </div>
           )}
         </div>
+        
         <Header index={'03'} title={'Conquer the deep'} description={"Select your ultimate objective."} />
         <div className='grid grid-cols-3 gap-4'>
           {Object.keys(SCHEMES).map((scheme, schemeIndex) => {
             return (
               <button onClick={() => {
                 setGoal(scheme)
-              }} className={' bg-slate-950 border duration-200 hover:border-blue-600 py-3 rounded-lg ' + (scheme === goal ? 'border-blue-600' : 'border-blue-400')} key={schemeIndex}>
+              }} className={'bg-slate-950 border duration-200 hover:border-blue-600 py-3 rounded-lg ' + (scheme === goal ? 'border-blue-600' : 'border-blue-400')} key={schemeIndex}>
                 <p className='capitalize'>{scheme.replaceAll('_', " ")}</p>
               </button>
             )
