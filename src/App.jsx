@@ -22,8 +22,10 @@ function App() {
     let newWorkout = generateWorkout({poison, muscles, goal})
     setWorkout(newWorkout)
 
-    // Scroll down to generated exercises after clicking formulate button. References workout ID that is intitialized in SectionWrapper element in Workout.jsx component.
-    window.location.href = '#workout'
+    // Scroll down to generated exercises after clicking formulate button. References workout ID that is intitialized in SectionWrapper element in Workout.jsx component. setTimeout ensures the DOM has time to update with the exercise cards before attempting to scroll to it.
+    setTimeout(() => {
+      window.location.href = '#workout'
+    }, 100);
   }
 
   return (
