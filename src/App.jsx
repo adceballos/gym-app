@@ -21,6 +21,9 @@ function App() {
     // Generate a new workout based on the selected split (poison), muscle groups, and goal, (pass them as object using {}), then update the state with the generated workout.
     let newWorkout = generateWorkout({poison, muscles, goal})
     setWorkout(newWorkout)
+
+    // Scroll down to generated exercises after clicking formulate button. References workout ID that is intitialized in SectionWrapper element in Workout.jsx component.
+    window.location.href = '#workout'
   }
 
   return (

@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+/* When clicking the "Accept & Begin" button, it smoothly navigates to the workout selection section. */
+html {
+    scroll-behavior: smooth;
+}
 /*applies poppins font family to everything*/
 * {
     font-family: "Poppins", sans-serif;
