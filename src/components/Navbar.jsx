@@ -8,7 +8,7 @@ export default function Navbar() {
         {/* Logo and Image */}
         <div className="flex items-center space-x-2">
         <img
-            src="./src/assets/images/MantisFitnessLogoNew.PNG"
+            src="./public/assets/images/MantisFitnessLogoNew.PNG"
             alt="Mantis Fitness logo"
             className="w-14 h-18" // Adjust size of the image
           />
