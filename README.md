@@ -11,6 +11,7 @@ Welcome to **Mantis Fitness**, the ultimate aquatic-themed gym app designed to h
 - [Overview](#overview)
 - [Features](#features)
 - [Tech Stack](#tech-stack)
+- [Live Demo](#live-demo)
 - [Contact](#contact)
 
 ---
@@ -36,6 +37,12 @@ Welcome to **Mantis Fitness**, the ultimate aquatic-themed gym app designed to h
 - **State Management**: React Hooks (`useState`)
 - **Utilities**: Workout generation logic
 - **Deployment**: Netlify/GitHub Pages
+
+---
+
+## Live Demo
+
+Check out the live demo of Mantis Fitness here: [Mantis Fitness](https://mantis-fitness.netlify.app)
 
 ---
 

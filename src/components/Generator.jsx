@@ -60,7 +60,7 @@ export default function Generator(props) {
   }
   return (
     // Pass header and title as attribute style props to SectionWrapper component.
-    <SectionWrapper id={'generate'} header={"generate your workout"} title={['Time', 'to', 'flex', 'those', 'Claws']}>
+    <SectionWrapper id={'generate'} header={"generate your workout"} title={['Prepare', 'to', 'make', 'waves']}>
         {/* In JSX, you can use a self-closing tag if a component does not have any children. <Header /> acts the same as <Header></Header>. */}
         <Header index={'01'} title={'Pick your poison'} description={"Select the workout you wish to endure."} />
         {/* Retrieve an array of keys from WORKOUTS object located in swoldier.js, then map each key as a button, representing 4 different workout splits.

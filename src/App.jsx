@@ -5,6 +5,7 @@ import Generator from './components/Generator'
 import Workout from './components/Workout'
 // import exported generateWorkout function
 import { generateWorkout } from './utils/functions'
+import Navbar from './components/Navbar'
 
 function App() {
   // States can be passed down, but cannot be passed up. We initialize our states here so we can have access to these values in our top level component (App.jsx) because we need them to generate our workout.
@@ -30,6 +31,7 @@ function App() {
 
   return (
     <main className='min-h-screen flex flex-col bg-gradient-to-r from-slate-800 to-slate-950 text-white text-sm sm:text-base'>
+    <Navbar />
      <Hero />
      <Generator 
      poison={poison}
