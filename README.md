@@ -2,7 +2,7 @@
 
 Welcome to **Mantis Fitness**, the ultimate aquatic-themed gym app designed to help you achieve your fitness goals. Dive into the depths of fitness and generate custom workout routines tailored to your needs.
 
-![Mantis Fitness](./public/assets/images/MantisFitnessLogoNew.PNG)
+![Mantis Fitness](./public/MantisFitnessLogoNew.PNG)
 
 ---
 
