@@ -94,7 +94,7 @@ export default function Generator(props) {
           {/* Use short circuit operator (&&) to conditionally render the <div>...</div>. If showModal is true (dropdown button is clicked), everything after && is rendered (the dropdown displays all of the muscleGroup buttons). */}
           {showModal && (
             <div className='flex flex-col p-3'>
-              {/* Access array of individual muscle groups if individual split is selected, otherwise access array through key. */}
+              {/* Access array of individual muscle groups if individual split is selected, otherwise access array through key. This is because individual is just an array, whereas the other splits are objects with key(muscle region) value(array of muscles associated with muscle region) pairs. */}
               {(poison === 'individual' ? WORKOUTS[poison] : Object.keys(WORKOUTS[poison])).map((muscleGroup, muscleGroupIndex) => {
                 return (
                   // When button is clicked, anonymous arrow function calls updateMuscles function and passes the currently selected muscle group. Use .includes() to check if the current muscleGroup is included in the muscles state array (i.e., whether the muscle group has been selected), and highlight the text color blue.
@@ -107,6 +107,7 @@ export default function Generator(props) {
           )}
         </div>
 
+        {/*  Object.keys(SCHEMES) returns an array of keys from the SCHEMES object (['strength_power', etc...]). .map() iterates over each key scheme and returns a button for each. key={schemeIndex} is used to assign a unique index to each button based on its position in SCHEMES. */}
         <Header index={'03'} title={'Rule the waves'} description={"Select your ultimate objective."} />
         <div className='grid grid-cols-1 sm:grid-cols-3 gap-4'>
           {Object.keys(SCHEMES).map((scheme, schemeIndex) => {

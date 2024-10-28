@@ -36,7 +36,7 @@ Welcome to **Mantis Fitness**, the ultimate aquatic-themed gym app designed to h
 - **Frontend**: React, Tailwind CSS
 - **State Management**: React Hooks (`useState`)
 - **Utilities**: Workout generation logic
-- **Deployment**: Netlify/GitHub Pages
+- **Deployment**: Netlify
 
 ---
 

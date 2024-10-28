@@ -43,7 +43,6 @@ export default function ExerciseCard(props) {
                     <h3 className='text-slate-400 text-sm capitalize'>Sets Completed</h3>
                     <p className='font-medium'>{setsCompleted} / 5</p>
                 </button>
-
             </div>
         </div>
     )
